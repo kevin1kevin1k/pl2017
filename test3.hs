@@ -33,6 +33,27 @@ foldl' f e (x : xs) = foldl' f (f e x) xs
 -- f e [1..3] = f (f (f e 1) 2) 3
 
 
+{-
+Proof of
+foldr f e . map g == foldr (f . g) e
+
+  (foldr f e . map g) []
+= foldr f e (map g [])
+= foldr f e []
+= e
+= (foldr ?? e) []
+
+  (foldr f e . map g) (x : xs)
+= foldr f e (map g (x : xs))
+= foldr f e (g x : map g xs)
+= f (g x) (foldr f e (map g xs))
+= f (g x) ((foldr f e . map g) xs)
+= f (g x) (foldr (f . g) e xs)  -- induction hypothesis
+= (f . g) x (foldr (f . g) e xs)
+= (foldr (f . g) e) (x : xs)
+-}
+
+
 sum'' = foldr' (+) 0
 length'' = foldr' (\x n -> 1 + n) 0
 concat'' = foldr' (+++) []
