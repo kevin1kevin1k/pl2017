@@ -31,6 +31,7 @@ reverse'' xs = revcat xs []
 square :: Int -> Int
 square x = x * x
 
+sumsq :: List Int -> Int
 sumsq [] = 0
 sumsq (x : xs) = square x + sumsq xs
 -- linear space for the stack of return addresses
